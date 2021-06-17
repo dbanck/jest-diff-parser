@@ -11,14 +11,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:jest-diff-parser.helloWorld"
+    "onCommand:jest-diff-parser.parseSelection"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "jest-diff-parser.helloWorld",
-        "title": "Hello World"
+        "command": "jest-diff-parser.parseSelection",
+        "title": "Jest Diff: Parse Selection"
       }
     ]
   },
