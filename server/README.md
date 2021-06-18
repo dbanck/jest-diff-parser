@@ -1,8 +1,8 @@
 # Language Server
 
-This small language server parses Jest diffs and converts them to valid JSON.
+This small language server parses and validates Jest diffs.
 
-The parsing is based on the original JSON grammar and we're using ANTLR4 to generate a parser in Go.
+The parsing is based on the original JSON grammar with modifications for Jest output. We're using ANTLR4 to generate a parser in Go.
 
 ## Requirements
 

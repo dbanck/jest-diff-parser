@@ -11,18 +11,19 @@ export function activate(context: vscode.ExtensionContext) {
         const document = editor.document;
         const selection = editor.selection;
 
-        // Get the word within the selection
+        // Get the the selection
         const text = document.getText(selection);
         if (text.length > 0) {
-          console.log(
-            "🚀 ~ file: extension.ts ~ line 29 ~ activate ~ word",
-            text
-          );
-        }
+          // TODO! validate if text is valid jest diff
 
-        // editor.edit(editBuilder => {
-        //   editBuilder.replace(selection, reversed);
-        // });
+          editor.edit((editBuilder) => {
+            // TODO! replace with better parsing
+            editBuilder.replace(
+              selection,
+              text.replace(/Array\s|Object\s|\+\s|\-\s|/g, "")
+            );
+          });
+        }
       }
     }
   );
