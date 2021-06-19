@@ -1,6 +1,6 @@
-// Code generated from JSON.g4 by ANTLR 4.9.2. DO NOT EDIT.
+// Code generated from JestDiff.g4 by ANTLR 4.9.2. DO NOT EDIT.
 
-package parser // JSON
+package parser // JestDiff
 
 import (
 	"fmt"
@@ -42,7 +42,8 @@ var parserATN = []uint16{
 	2, 56, 11, 3, 2, 2, 2, 7, 20, 27, 39, 46, 55,
 }
 var literalNames = []string{
-	"", "'{'", "','", "'}'", "':'", "'['", "']'", "'true'", "'false'", "'null'",
+	"", "'Object {'", "','", "'}'", "':'", "'Array ['", "']'", "'true'", "'false'",
+	"'null'",
 }
 var symbolicNames = []string{
 	"", "", "", "", "", "", "", "", "", "", "STRING", "NUMBER", "WS",
@@ -52,18 +53,18 @@ var ruleNames = []string{
 	"json", "obj", "pair", "arr", "value",
 }
 
-type JSONParser struct {
+type JestDiffParser struct {
 	*antlr.BaseParser
 }
 
-// NewJSONParser produces a new parser instance for the optional input antlr.TokenStream.
+// NewJestDiffParser produces a new parser instance for the optional input antlr.TokenStream.
 //
-// The *JSONParser instance produced may be reused by calling the SetInputStream method.
+// The *JestDiffParser instance produced may be reused by calling the SetInputStream method.
 // The initial parser configuration is expensive to construct, and the object is not thread-safe;
 // however, if used within a Golang sync.Pool, the construction cost amortizes well and the
 // objects can be used in a thread-safe manner.
-func NewJSONParser(input antlr.TokenStream) *JSONParser {
-	this := new(JSONParser)
+func NewJestDiffParser(input antlr.TokenStream) *JestDiffParser {
+	this := new(JestDiffParser)
 	deserializer := antlr.NewATNDeserializer(nil)
 	deserializedATN := deserializer.DeserializeFromUInt16(parserATN)
 	decisionToDFA := make([]*antlr.DFA, len(deserializedATN.DecisionToState))
@@ -76,35 +77,35 @@ func NewJSONParser(input antlr.TokenStream) *JSONParser {
 	this.RuleNames = ruleNames
 	this.LiteralNames = literalNames
 	this.SymbolicNames = symbolicNames
-	this.GrammarFileName = "JSON.g4"
+	this.GrammarFileName = "JestDiff.g4"
 
 	return this
 }
 
-// JSONParser tokens.
+// JestDiffParser tokens.
 const (
-	JSONParserEOF    = antlr.TokenEOF
-	JSONParserT__0   = 1
-	JSONParserT__1   = 2
-	JSONParserT__2   = 3
-	JSONParserT__3   = 4
-	JSONParserT__4   = 5
-	JSONParserT__5   = 6
-	JSONParserT__6   = 7
-	JSONParserT__7   = 8
-	JSONParserT__8   = 9
-	JSONParserSTRING = 10
-	JSONParserNUMBER = 11
-	JSONParserWS     = 12
+	JestDiffParserEOF    = antlr.TokenEOF
+	JestDiffParserT__0   = 1
+	JestDiffParserT__1   = 2
+	JestDiffParserT__2   = 3
+	JestDiffParserT__3   = 4
+	JestDiffParserT__4   = 5
+	JestDiffParserT__5   = 6
+	JestDiffParserT__6   = 7
+	JestDiffParserT__7   = 8
+	JestDiffParserT__8   = 9
+	JestDiffParserSTRING = 10
+	JestDiffParserNUMBER = 11
+	JestDiffParserWS     = 12
 )
 
-// JSONParser rules.
+// JestDiffParser rules.
 const (
-	JSONParserRULE_json  = 0
-	JSONParserRULE_obj   = 1
-	JSONParserRULE_pair  = 2
-	JSONParserRULE_arr   = 3
-	JSONParserRULE_value = 4
+	JestDiffParserRULE_json  = 0
+	JestDiffParserRULE_obj   = 1
+	JestDiffParserRULE_pair  = 2
+	JestDiffParserRULE_arr   = 3
+	JestDiffParserRULE_value = 4
 )
 
 // IJsonContext is an interface to support dynamic dispatch.
@@ -126,7 +127,7 @@ type JsonContext struct {
 func NewEmptyJsonContext() *JsonContext {
 	var p = new(JsonContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = JSONParserRULE_json
+	p.RuleIndex = JestDiffParserRULE_json
 	return p
 }
 
@@ -138,7 +139,7 @@ func NewJsonContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = JSONParserRULE_json
+	p.RuleIndex = JestDiffParserRULE_json
 
 	return p
 }
@@ -164,20 +165,20 @@ func (s *JsonContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 }
 
 func (s *JsonContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(JSONListener); ok {
+	if listenerT, ok := listener.(JestDiffListener); ok {
 		listenerT.EnterJson(s)
 	}
 }
 
 func (s *JsonContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(JSONListener); ok {
+	if listenerT, ok := listener.(JestDiffListener); ok {
 		listenerT.ExitJson(s)
 	}
 }
 
-func (p *JSONParser) Json() (localctx IJsonContext) {
+func (p *JestDiffParser) Json() (localctx IJsonContext) {
 	localctx = NewJsonContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 0, JSONParserRULE_json)
+	p.EnterRule(localctx, 0, JestDiffParserRULE_json)
 
 	defer func() {
 		p.ExitRule()
@@ -223,7 +224,7 @@ type ObjContext struct {
 func NewEmptyObjContext() *ObjContext {
 	var p = new(ObjContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = JSONParserRULE_obj
+	p.RuleIndex = JestDiffParserRULE_obj
 	return p
 }
 
@@ -235,7 +236,7 @@ func NewObjContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoking
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = JSONParserRULE_obj
+	p.RuleIndex = JestDiffParserRULE_obj
 
 	return p
 }
@@ -274,20 +275,20 @@ func (s *ObjContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) st
 }
 
 func (s *ObjContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(JSONListener); ok {
+	if listenerT, ok := listener.(JestDiffListener); ok {
 		listenerT.EnterObj(s)
 	}
 }
 
 func (s *ObjContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(JSONListener); ok {
+	if listenerT, ok := listener.(JestDiffListener); ok {
 		listenerT.ExitObj(s)
 	}
 }
 
-func (p *JSONParser) Obj() (localctx IObjContext) {
+func (p *JestDiffParser) Obj() (localctx IObjContext) {
 	localctx = NewObjContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 2, JSONParserRULE_obj)
+	p.EnterRule(localctx, 2, JestDiffParserRULE_obj)
 	var _la int
 
 	defer func() {
@@ -313,7 +314,7 @@ func (p *JSONParser) Obj() (localctx IObjContext) {
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(12)
-			p.Match(JSONParserT__0)
+			p.Match(JestDiffParserT__0)
 		}
 		{
 			p.SetState(13)
@@ -323,10 +324,10 @@ func (p *JSONParser) Obj() (localctx IObjContext) {
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		for _la == JSONParserT__1 {
+		for _la == JestDiffParserT__1 {
 			{
 				p.SetState(14)
-				p.Match(JSONParserT__1)
+				p.Match(JestDiffParserT__1)
 			}
 			{
 				p.SetState(15)
@@ -339,18 +340,18 @@ func (p *JSONParser) Obj() (localctx IObjContext) {
 		}
 		{
 			p.SetState(21)
-			p.Match(JSONParserT__2)
+			p.Match(JestDiffParserT__2)
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(23)
-			p.Match(JSONParserT__0)
+			p.Match(JestDiffParserT__0)
 		}
 		{
 			p.SetState(24)
-			p.Match(JSONParserT__2)
+			p.Match(JestDiffParserT__2)
 		}
 
 	}
@@ -377,7 +378,7 @@ type PairContext struct {
 func NewEmptyPairContext() *PairContext {
 	var p = new(PairContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = JSONParserRULE_pair
+	p.RuleIndex = JestDiffParserRULE_pair
 	return p
 }
 
@@ -389,7 +390,7 @@ func NewPairContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = JSONParserRULE_pair
+	p.RuleIndex = JestDiffParserRULE_pair
 
 	return p
 }
@@ -397,7 +398,7 @@ func NewPairContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 func (s *PairContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *PairContext) STRING() antlr.TerminalNode {
-	return s.GetToken(JSONParserSTRING, 0)
+	return s.GetToken(JestDiffParserSTRING, 0)
 }
 
 func (s *PairContext) Value() IValueContext {
@@ -419,20 +420,20 @@ func (s *PairContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 }
 
 func (s *PairContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(JSONListener); ok {
+	if listenerT, ok := listener.(JestDiffListener); ok {
 		listenerT.EnterPair(s)
 	}
 }
 
 func (s *PairContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(JSONListener); ok {
+	if listenerT, ok := listener.(JestDiffListener); ok {
 		listenerT.ExitPair(s)
 	}
 }
 
-func (p *JSONParser) Pair() (localctx IPairContext) {
+func (p *JestDiffParser) Pair() (localctx IPairContext) {
 	localctx = NewPairContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 4, JSONParserRULE_pair)
+	p.EnterRule(localctx, 4, JestDiffParserRULE_pair)
 
 	defer func() {
 		p.ExitRule()
@@ -453,11 +454,11 @@ func (p *JSONParser) Pair() (localctx IPairContext) {
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(27)
-		p.Match(JSONParserSTRING)
+		p.Match(JestDiffParserSTRING)
 	}
 	{
 		p.SetState(28)
-		p.Match(JSONParserT__3)
+		p.Match(JestDiffParserT__3)
 	}
 	{
 		p.SetState(29)
@@ -486,7 +487,7 @@ type ArrContext struct {
 func NewEmptyArrContext() *ArrContext {
 	var p = new(ArrContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = JSONParserRULE_arr
+	p.RuleIndex = JestDiffParserRULE_arr
 	return p
 }
 
@@ -498,7 +499,7 @@ func NewArrContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoking
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = JSONParserRULE_arr
+	p.RuleIndex = JestDiffParserRULE_arr
 
 	return p
 }
@@ -537,20 +538,20 @@ func (s *ArrContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) st
 }
 
 func (s *ArrContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(JSONListener); ok {
+	if listenerT, ok := listener.(JestDiffListener); ok {
 		listenerT.EnterArr(s)
 	}
 }
 
 func (s *ArrContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(JSONListener); ok {
+	if listenerT, ok := listener.(JestDiffListener); ok {
 		listenerT.ExitArr(s)
 	}
 }
 
-func (p *JSONParser) Arr() (localctx IArrContext) {
+func (p *JestDiffParser) Arr() (localctx IArrContext) {
 	localctx = NewArrContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 6, JSONParserRULE_arr)
+	p.EnterRule(localctx, 6, JestDiffParserRULE_arr)
 	var _la int
 
 	defer func() {
@@ -576,7 +577,7 @@ func (p *JSONParser) Arr() (localctx IArrContext) {
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(31)
-			p.Match(JSONParserT__4)
+			p.Match(JestDiffParserT__4)
 		}
 		{
 			p.SetState(32)
@@ -586,10 +587,10 @@ func (p *JSONParser) Arr() (localctx IArrContext) {
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		for _la == JSONParserT__1 {
+		for _la == JestDiffParserT__1 {
 			{
 				p.SetState(33)
-				p.Match(JSONParserT__1)
+				p.Match(JestDiffParserT__1)
 			}
 			{
 				p.SetState(34)
@@ -602,18 +603,18 @@ func (p *JSONParser) Arr() (localctx IArrContext) {
 		}
 		{
 			p.SetState(40)
-			p.Match(JSONParserT__5)
+			p.Match(JestDiffParserT__5)
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(42)
-			p.Match(JSONParserT__4)
+			p.Match(JestDiffParserT__4)
 		}
 		{
 			p.SetState(43)
-			p.Match(JSONParserT__5)
+			p.Match(JestDiffParserT__5)
 		}
 
 	}
@@ -640,7 +641,7 @@ type ValueContext struct {
 func NewEmptyValueContext() *ValueContext {
 	var p = new(ValueContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = JSONParserRULE_value
+	p.RuleIndex = JestDiffParserRULE_value
 	return p
 }
 
@@ -652,7 +653,7 @@ func NewValueContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = JSONParserRULE_value
+	p.RuleIndex = JestDiffParserRULE_value
 
 	return p
 }
@@ -660,11 +661,11 @@ func NewValueContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 func (s *ValueContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ValueContext) STRING() antlr.TerminalNode {
-	return s.GetToken(JSONParserSTRING, 0)
+	return s.GetToken(JestDiffParserSTRING, 0)
 }
 
 func (s *ValueContext) NUMBER() antlr.TerminalNode {
-	return s.GetToken(JSONParserNUMBER, 0)
+	return s.GetToken(JestDiffParserNUMBER, 0)
 }
 
 func (s *ValueContext) Obj() IObjContext {
@@ -696,20 +697,20 @@ func (s *ValueContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) 
 }
 
 func (s *ValueContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(JSONListener); ok {
+	if listenerT, ok := listener.(JestDiffListener); ok {
 		listenerT.EnterValue(s)
 	}
 }
 
 func (s *ValueContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(JSONListener); ok {
+	if listenerT, ok := listener.(JestDiffListener); ok {
 		listenerT.ExitValue(s)
 	}
 }
 
-func (p *JSONParser) Value() (localctx IValueContext) {
+func (p *JestDiffParser) Value() (localctx IValueContext) {
 	localctx = NewValueContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 8, JSONParserRULE_value)
+	p.EnterRule(localctx, 8, JestDiffParserRULE_value)
 
 	defer func() {
 		p.ExitRule()
@@ -731,53 +732,53 @@ func (p *JSONParser) Value() (localctx IValueContext) {
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
-	case JSONParserSTRING:
+	case JestDiffParserSTRING:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(46)
-			p.Match(JSONParserSTRING)
+			p.Match(JestDiffParserSTRING)
 		}
 
-	case JSONParserNUMBER:
+	case JestDiffParserNUMBER:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(47)
-			p.Match(JSONParserNUMBER)
+			p.Match(JestDiffParserNUMBER)
 		}
 
-	case JSONParserT__0:
+	case JestDiffParserT__0:
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(48)
 			p.Obj()
 		}
 
-	case JSONParserT__4:
+	case JestDiffParserT__4:
 		p.EnterOuterAlt(localctx, 4)
 		{
 			p.SetState(49)
 			p.Arr()
 		}
 
-	case JSONParserT__6:
+	case JestDiffParserT__6:
 		p.EnterOuterAlt(localctx, 5)
 		{
 			p.SetState(50)
-			p.Match(JSONParserT__6)
+			p.Match(JestDiffParserT__6)
 		}
 
-	case JSONParserT__7:
+	case JestDiffParserT__7:
 		p.EnterOuterAlt(localctx, 6)
 		{
 			p.SetState(51)
-			p.Match(JSONParserT__7)
+			p.Match(JestDiffParserT__7)
 		}
 
-	case JSONParserT__8:
+	case JestDiffParserT__8:
 		p.EnterOuterAlt(localctx, 7)
 		{
 			p.SetState(52)
-			p.Match(JSONParserT__8)
+			p.Match(JestDiffParserT__8)
 		}
 
 	default:

@@ -1,11 +1,11 @@
-// Code generated from JSON.g4 by ANTLR 4.9.2. DO NOT EDIT.
+// Code generated from JestDiff.g4 by ANTLR 4.9.2. DO NOT EDIT.
 
-package parser // JSON
+package parser // JestDiff
 
 import "github.com/antlr/antlr4/runtime/Go/antlr"
 
-// JSONListener is a complete listener for a parse tree produced by JSONParser.
-type JSONListener interface {
+// JestDiffListener is a complete listener for a parse tree produced by JestDiffParser.
+type JestDiffListener interface {
 	antlr.ParseTreeListener
 
 	// EnterJson is called when entering the json production.

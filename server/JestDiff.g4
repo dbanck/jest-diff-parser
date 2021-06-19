@@ -2,15 +2,15 @@
 /** Taken from "The Definitive ANTLR 4 Reference" by Terence Parr */
 
 // Derived from http://json.org
-grammar JSON;
+grammar JestDiff;
 
 json
    : value
    ;
 
 obj
-   : '{' pair (',' pair)* '}'
-   | '{' '}'
+   : 'Object {' pair (',' pair)* '}'
+   | 'Object {' '}'
    ;
 
 pair
@@ -18,8 +18,8 @@ pair
    ;
 
 arr
-   : '[' value (',' value)* ']'
-   | '[' ']'
+   : 'Array [' value (',' value)* ']'
+   | 'Array [' ']'
    ;
 
 value
@@ -76,5 +76,5 @@ fragment EXP
 // \- since - means "range" inside [...]
 
 WS
-   : [ \t\n\r] + -> skip
+   : [+\-]? [ \t\n\r] + -> skip
    ;
