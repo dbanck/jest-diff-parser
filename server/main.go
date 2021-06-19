@@ -1,38 +1,21 @@
 package main
 
 import (
-	"os"
+	// "fmt"
 
-	"github.com/mitchellh/cli"
+	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/dbanck/jest-diff-parser/internal/parser"
 )
 
-var version = "0.1.0"
-
 func main() {
-	c := &cli.CLI{
-		Name:       "jest-diff-ls",
-		Version:    version,
-		Args:       os.Args[1:],
-		HelpWriter: os.Stdout,
-	}
+	is, _ := antlr.NewFileStream("example.diff")
 
-	ui := &cli.ColoredUi{
-		ErrorColor: cli.UiColorRed,
-		WarnColor:  cli.UiColorYellow,
-		Ui: &cli.BasicUi{
-			Writer:      os.Stdout,
-			Reader:      os.Stdin,
-			ErrorWriter: os.Stderr,
-		},
-	}
+	// Create the Lexer
+	lexer := parser.NewJestDiffLexer(is)
+	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 
-	c.Commands = map[string]cli.CommandFactory{}
+	// Create the Parser
+	p := parser.NewJestDiffParser(stream)
+	p.Obj()
 
-	exitStatus, err := c.Run()
-
-	if err != nil {
-		ui.Error("Error: " + err.Error())
-	}
-
-	os.Exit(exitStatus)
 }

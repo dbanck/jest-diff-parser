@@ -13,5 +13,9 @@ Install [ANTLR v4](https://github.com/antlr/antlr4) with Homebrew: `brew install
 You can generate the parser by running:
 
 ```
-antlr -Dlanguage=Go -o internal/parser JSON.g4
+antlr -Dlanguage=Go -o internal/parser JestDiff.g4
 ```
+
+## Notes
+
+It's currently possible to parse the diff from `exampleV1.diff`. For real diff parsing, like `exampleV2.diff`, the grammar needs to be improved to handle trailing commas and allow objects on the outer most level.

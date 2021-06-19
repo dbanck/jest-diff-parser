@@ -1,0 +1,12 @@
+    +   "cutQty": Array [
+    +     Object {
+    +       "item-1": null,
+    +       "item-2": 441,
+    +       "timestamp": 1623933323000,
+    +     },
+    +     Object {
+    +       "item-1": null,
+    +       "item-2": null,
+    +       "timestamp": 1621254923000,
+    +     },
+    +   ],
