@@ -21,14 +21,10 @@ type server struct {
 }
 
 func NewServer(srvCtx context.Context) *server {
-	opts := &jrpc2.ServerOptions{
-		AllowPush: true,
-	}
-
 	return &server{
 		srvCtx:      srvCtx,
 		logger:      log.New(ioutil.Discard, "", 0),
-		jrpcOptions: opts,
+		jrpcOptions: &jrpc2.ServerOptions{},
 	}
 }
 
@@ -74,19 +70,15 @@ func (srv *server) StartAndWait(reader io.Reader, writer io.WriteCloser) {
 	rpcSrv := srv.startServer(reader, writer)
 	srv.logger.Printf("Starting server with pid %d", os.Getpid())
 
-	// Wrap waiter with a context so that we can cancel it here
-	// after the service is cancelled (and srv.Wait returns)
 	ctx, cancelFunc := context.WithCancel(srv.srvCtx)
 	go func() {
 		rpcSrv.Wait()
 		cancelFunc()
 	}()
 
-	select {
-	case <-ctx.Done():
-		srv.logger.Printf("Stopping server with pid %d", os.Getpid())
-		rpcSrv.Stop()
-	}
+	<-ctx.Done()
+	srv.logger.Printf("Stopping server with pid %d", os.Getpid())
+	rpcSrv.Stop()
 
 	srv.logger.Printf("Server with pid %d stopped.", os.Getpid())
 }
