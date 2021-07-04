@@ -1,8 +1,10 @@
-# Jest Diff Parser
+# Jest Diff Parser (WIP)
 
 This extension converts your Jest diffs into actual JSON. Just copy your test output into the editor, select the part you want to convert, and run the `Jest Diff: Parse Selection` command.
 
 ![Gif](./images/parse_selection.gif)
+
+This is still a work in progress! Use at your own risk.
 
 ## How does it work?
 
