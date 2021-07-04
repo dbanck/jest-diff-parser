@@ -1,19 +1,19 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
+	"context"
+	"log"
+	"os"
 
-	"github.com/dbanck/jest-diff-parser/internal/transformer"
+	"github.com/dbanck/jest-diff-parser/internal/server"
 )
 
 func main() {
-	content, err := ioutil.ReadFile("examples/exampleV1.diff")
+	ctx := context.Background()
+	logger := log.New(os.Stderr, "", log.LstdFlags|log.Lshortfile)
 
-	if err != nil {
-		panic(err)
-	}
+	srv := server.NewServer(ctx)
+	srv.SetLogger(logger)
 
-	fmt.Print(transformer.Transform(string(content)))
-
+	srv.StartAndWait(os.Stdin, os.Stdout)
 }

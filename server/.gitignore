@@ -16,3 +16,5 @@
 
 # ANTLR
 .antlr
+
+jest-diff-parser
