@@ -18,4 +18,4 @@ antlr -Dlanguage=Go -o internal/parser JestDiff.g4
 
 ## Notes
 
-It's currently possible to parse the diff from `exampleV1.diff`. For real diff parsing, like `exampleV2.diff`, the grammar needs to be improved to handle trailing commas and allow objects on the outer most level.
+It's currently possible to parse the diff from `examples/exampleV1.diff`. For real diff parsing, like `examples/exampleV2.diff`, the grammar needs to be improved to handle trailing commas and allow objects on the outer most level.

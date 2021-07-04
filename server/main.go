@@ -1,21 +1,19 @@
 package main
 
 import (
-	// "fmt"
+	"fmt"
+	"io/ioutil"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
-	"github.com/dbanck/jest-diff-parser/internal/parser"
+	"github.com/dbanck/jest-diff-parser/internal/transformer"
 )
 
 func main() {
-	is, _ := antlr.NewFileStream("example.diff")
+	content, err := ioutil.ReadFile("examples/exampleV1.diff")
 
-	// Create the Lexer
-	lexer := parser.NewJestDiffLexer(is)
-	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
+	if err != nil {
+		panic(err)
+	}
 
-	// Create the Parser
-	p := parser.NewJestDiffParser(stream)
-	p.Obj()
+	fmt.Print(transformer.Transform(string(content)))
 
 }

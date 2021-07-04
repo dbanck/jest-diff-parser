@@ -50,7 +50,7 @@ var symbolicNames = []string{
 }
 
 var ruleNames = []string{
-	"json", "obj", "pair", "arr", "value",
+	"jestDiff", "obj", "pair", "arr", "value",
 }
 
 type JestDiffParser struct {
@@ -101,52 +101,52 @@ const (
 
 // JestDiffParser rules.
 const (
-	JestDiffParserRULE_json  = 0
-	JestDiffParserRULE_obj   = 1
-	JestDiffParserRULE_pair  = 2
-	JestDiffParserRULE_arr   = 3
-	JestDiffParserRULE_value = 4
+	JestDiffParserRULE_jestDiff = 0
+	JestDiffParserRULE_obj      = 1
+	JestDiffParserRULE_pair     = 2
+	JestDiffParserRULE_arr      = 3
+	JestDiffParserRULE_value    = 4
 )
 
-// IJsonContext is an interface to support dynamic dispatch.
-type IJsonContext interface {
+// IJestDiffContext is an interface to support dynamic dispatch.
+type IJestDiffContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
-	// IsJsonContext differentiates from other interfaces.
-	IsJsonContext()
+	// IsJestDiffContext differentiates from other interfaces.
+	IsJestDiffContext()
 }
 
-type JsonContext struct {
+type JestDiffContext struct {
 	*antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
-func NewEmptyJsonContext() *JsonContext {
-	var p = new(JsonContext)
+func NewEmptyJestDiffContext() *JestDiffContext {
+	var p = new(JestDiffContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = JestDiffParserRULE_json
+	p.RuleIndex = JestDiffParserRULE_jestDiff
 	return p
 }
 
-func (*JsonContext) IsJsonContext() {}
+func (*JestDiffContext) IsJestDiffContext() {}
 
-func NewJsonContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *JsonContext {
-	var p = new(JsonContext)
+func NewJestDiffContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *JestDiffContext {
+	var p = new(JestDiffContext)
 
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = JestDiffParserRULE_json
+	p.RuleIndex = JestDiffParserRULE_jestDiff
 
 	return p
 }
 
-func (s *JsonContext) GetParser() antlr.Parser { return s.parser }
+func (s *JestDiffContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *JsonContext) Value() IValueContext {
+func (s *JestDiffContext) Value() IValueContext {
 	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueContext)(nil)).Elem(), 0)
 
 	if t == nil {
@@ -156,29 +156,29 @@ func (s *JsonContext) Value() IValueContext {
 	return t.(IValueContext)
 }
 
-func (s *JsonContext) GetRuleContext() antlr.RuleContext {
+func (s *JestDiffContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *JsonContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *JestDiffContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *JsonContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *JestDiffContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(JestDiffListener); ok {
-		listenerT.EnterJson(s)
+		listenerT.EnterJestDiff(s)
 	}
 }
 
-func (s *JsonContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *JestDiffContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(JestDiffListener); ok {
-		listenerT.ExitJson(s)
+		listenerT.ExitJestDiff(s)
 	}
 }
 
-func (p *JestDiffParser) Json() (localctx IJsonContext) {
-	localctx = NewJsonContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 0, JestDiffParserRULE_json)
+func (p *JestDiffParser) JestDiff() (localctx IJestDiffContext) {
+	localctx = NewJestDiffContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 0, JestDiffParserRULE_jestDiff)
 
 	defer func() {
 		p.ExitRule()

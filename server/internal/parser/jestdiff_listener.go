@@ -8,8 +8,8 @@ import "github.com/antlr/antlr4/runtime/Go/antlr"
 type JestDiffListener interface {
 	antlr.ParseTreeListener
 
-	// EnterJson is called when entering the json production.
-	EnterJson(c *JsonContext)
+	// EnterJestDiff is called when entering the jestDiff production.
+	EnterJestDiff(c *JestDiffContext)
 
 	// EnterObj is called when entering the obj production.
 	EnterObj(c *ObjContext)
@@ -23,8 +23,8 @@ type JestDiffListener interface {
 	// EnterValue is called when entering the value production.
 	EnterValue(c *ValueContext)
 
-	// ExitJson is called when exiting the json production.
-	ExitJson(c *JsonContext)
+	// ExitJestDiff is called when exiting the jestDiff production.
+	ExitJestDiff(c *JestDiffContext)
 
 	// ExitObj is called when exiting the obj production.
 	ExitObj(c *ObjContext)

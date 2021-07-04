@@ -29,7 +29,7 @@ NUMBER
 WS
 
 rule names:
-json
+jestDiff
 obj
 pair
 arr

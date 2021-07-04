@@ -21,11 +21,11 @@ func (s *BaseJestDiffListener) EnterEveryRule(ctx antlr.ParserRuleContext) {}
 // ExitEveryRule is called when any rule is exited.
 func (s *BaseJestDiffListener) ExitEveryRule(ctx antlr.ParserRuleContext) {}
 
-// EnterJson is called when production json is entered.
-func (s *BaseJestDiffListener) EnterJson(ctx *JsonContext) {}
+// EnterJestDiff is called when production jestDiff is entered.
+func (s *BaseJestDiffListener) EnterJestDiff(ctx *JestDiffContext) {}
 
-// ExitJson is called when production json is exited.
-func (s *BaseJestDiffListener) ExitJson(ctx *JsonContext) {}
+// ExitJestDiff is called when production jestDiff is exited.
+func (s *BaseJestDiffListener) ExitJestDiff(ctx *JestDiffContext) {}
 
 // EnterObj is called when production obj is entered.
 func (s *BaseJestDiffListener) EnterObj(ctx *ObjContext) {}
