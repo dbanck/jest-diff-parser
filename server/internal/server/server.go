@@ -10,6 +10,8 @@ import (
 	"github.com/creachadair/jrpc2"
 	"github.com/creachadair/jrpc2/channel"
 	"github.com/creachadair/jrpc2/handler"
+	"github.com/dbanck/jest-diff-parser/internal/protocol"
+	"github.com/dbanck/jest-diff-parser/internal/transformer"
 )
 
 type server struct {
@@ -37,11 +39,29 @@ func (srv *server) SetLogger(logger *log.Logger) {
 
 func (srv *server) startServer(reader io.Reader, writer io.WriteCloser) *jrpc2.Server {
 	rpcSrv := jrpc2.NewServer(handler.Map{
-		"initialize": handler.New(func(ctx context.Context) string {
-			return "initialize"
+		"initialize": handler.New(func(ctx context.Context, req *jrpc2.Request) (interface{}, error) {
+			return protocol.InitializeResult{
+				Capabilities: protocol.ServerCapabilities{},
+			}, nil
 		}),
-		"shutdown": handler.New(func(ctx context.Context) string {
-			return "shutdown"
+		"initialized": handler.New(func(ctx context.Context, req *jrpc2.Request) (interface{}, error) {
+			return nil, nil
+		}),
+		"shutdown": handler.New(func(ctx context.Context, req *jrpc2.Request) (interface{}, error) {
+			return nil, nil
+		}),
+		"textDocument/codeLens": handler.New(func(ctx context.Context, req *jrpc2.Request) (interface{}, error) {
+			return []protocol.CodeLens{}, nil
+		}),
+		"textDocument/documentLink": handler.New(func(ctx context.Context, req *jrpc2.Request) (interface{}, error) {
+			return nil, nil
+		}),
+		"workspace/executeCommand": handler.New(func(ctx context.Context, cmd protocol.ExecuteCommandParams) (interface{}, error) {
+			// TODO: maybe implement workspace/applyEdit
+			return nil, nil
+		}),
+		"$/formatJestDiff": handler.New(func(ctx context.Context, args []string) (string, error) {
+			return transformer.Transform(args[0]), nil
 		}),
 	}, srv.jrpcOptions)
 

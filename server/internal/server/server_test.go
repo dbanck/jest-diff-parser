@@ -9,6 +9,8 @@ import (
 
 	"github.com/creachadair/jrpc2"
 	"github.com/creachadair/jrpc2/channel"
+	"github.com/dbanck/jest-diff-parser/internal/protocol"
+	"github.com/google/go-cmp/cmp"
 )
 
 func Test_server_initialize(t *testing.T) {
@@ -38,14 +40,16 @@ func Test_server_initialize(t *testing.T) {
 	if err != nil {
 		log.Fatalf("Call: %v", err)
 	}
-	var msg string
+	var msg protocol.InitializeResult
 	if err := rsp.UnmarshalResult(&msg); err != nil {
 		log.Fatalf("Decoding result: %v", err)
 	}
 
-	want := "initialize"
-	if msg != want {
-		t.Errorf("server() = %v, want %v", msg, want)
+	want := protocol.InitializeResult{
+		Capabilities: protocol.ServerCapabilities{},
+	}
+	if diff := cmp.Diff(want, msg); diff != "" {
+		t.Errorf("initialize msg mismatch (-want +got):\n%s", diff)
 	}
 }
 
