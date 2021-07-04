@@ -1,15 +1,11 @@
 import * as path from "path";
 import * as vscode from "vscode";
-import * as cp from "child_process";
-import * as rpc from "vscode-jsonrpc";
 
 import {
   Executable,
-  ExecuteCommandRequest,
   LanguageClient,
   LanguageClientOptions,
   ServerOptions,
-  TransportKind,
 } from "vscode-languageclient/node";
 
 let client: LanguageClient;
