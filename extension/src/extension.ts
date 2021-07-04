@@ -1,9 +1,54 @@
+import * as path from "path";
 import * as vscode from "vscode";
+import * as cp from "child_process";
+import * as rpc from "vscode-jsonrpc";
+
+import {
+  Executable,
+  ExecuteCommandRequest,
+  LanguageClient,
+  LanguageClientOptions,
+  ServerOptions,
+  TransportKind,
+} from "vscode-languageclient/node";
+
+let client: LanguageClient;
+
+function newClient(command: string) {
+  const serverArgs = ["serve"];
+  const executable: Executable = {
+    command,
+    args: serverArgs,
+    options: {},
+  };
+  const serverOptions: ServerOptions = {
+    run: executable,
+    debug: executable,
+  };
+
+  const clientOptions: LanguageClientOptions = {
+    // TODO! define file type
+    documentSelector: [{ scheme: "file", language: "plaintext" }],
+  };
+
+  return new LanguageClient(
+    `languageServerJestDiff`,
+    `Language Server Jest Diff`,
+    serverOptions,
+    clientOptions
+  );
+}
 
 export function activate(context: vscode.ExtensionContext) {
-  let disposable = vscode.commands.registerCommand(
+  const binary = context.asAbsolutePath(
+    path.join("..", "server", "jest-diff-parser")
+  );
+  let client = newClient(binary);
+  client.start();
+
+  const disposable = vscode.commands.registerCommand(
     "jest-diff-parser.parseSelection",
-    () => {
+    async () => {
       // Get the active text editor
       const editor = vscode.window.activeTextEditor;
 
@@ -14,15 +59,19 @@ export function activate(context: vscode.ExtensionContext) {
         // Get the the selection
         const text = document.getText(selection);
         if (text.length > 0) {
-          // TODO! validate if text is valid jest diff
-
-          editor.edit((editBuilder) => {
-            // TODO! replace with better parsing
-            editBuilder.replace(
-              selection,
-              text.replace(/Array\s|Object\s|\+\s|\-\s|/g, "")
+          try {
+            // Send selection to ls for replacement
+            const result = await client.sendRequest<string>(
+              "$/formatJestDiff",
+              text
             );
-          });
+
+            editor.edit((editBuilder) => {
+              editBuilder.replace(selection, result);
+            });
+          } catch (error) {
+            console.error("Got bad result from ls", error);
+          }
         }
       }
     }
@@ -31,4 +80,9 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable);
 }
 
-export function deactivate() {}
+export function deactivate(): Thenable<void> | undefined {
+  if (!client) {
+    return undefined;
+  }
+  return client.stop();
+}
