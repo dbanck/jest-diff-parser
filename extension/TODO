@@ -1,0 +1,4 @@
+Extension:
+    ☐ Catch errors from server and display them using notifications
+    ☐ Update `activationEvents` for JavaScript and TypeScript
+    ☐ Multi Workspace Support

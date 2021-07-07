@@ -1,0 +1,14 @@
+Parser:
+    ☐ Improve ANTLR Grammar to support different kind of diffs
+        ☐ Diff with no object at the outer most level
+        ☐ Diff of arrays
+    ☐ Add more test cases for a more robust parser
+
+Server:
+    ☐ Catch all kind of errors and report them back to the user
+    ☐ Add tests for different LS commands
+    ☐ Add a catch all for not supported commands (most)
+
+Transformer:
+    ☐ Improve JSON for nested structures
+    ☐ Remove trailing commas on last items
