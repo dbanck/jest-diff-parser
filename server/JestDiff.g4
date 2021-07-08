@@ -31,6 +31,7 @@ value
    | 'true'
    | 'false'
    | 'null'
+   | 'undefined'
    ;
 
 

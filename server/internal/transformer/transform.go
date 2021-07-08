@@ -17,7 +17,8 @@ func (l *transformListener) EnterObj(ctx *parser.ObjContext) {
 }
 
 func (l *transformListener) ExitObj(ctx *parser.ObjContext) {
-	l.result.WriteString("}")
+	// TODO: check if last child and omit comma
+	l.result.WriteString("},")
 }
 
 func (l *transformListener) EnterArr(ctx *parser.ArrContext) {
@@ -25,7 +26,8 @@ func (l *transformListener) EnterArr(ctx *parser.ArrContext) {
 }
 
 func (l *transformListener) ExitArr(ctx *parser.ArrContext) {
-	l.result.WriteString("]")
+	// TODO: check if last child and omit comma
+	l.result.WriteString("],")
 }
 
 func (l *transformListener) EnterPair(ctx *parser.PairContext) {
