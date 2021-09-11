@@ -29,7 +29,7 @@ func NewServer(srvCtx context.Context) *server {
 }
 
 func (srv *server) SetLogger(logger *log.Logger) {
-	srv.jrpcOptions.Logger = logger
+	srv.jrpcOptions.Logger = jrpc2.StdLogger(logger)
 	srv.logger = logger
 }
 

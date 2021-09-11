@@ -32,7 +32,7 @@ func Test_server_initialize(t *testing.T) {
 	clientCh := channel.LSP(clientStdin, clientStdout)
 	opts := &jrpc2.ClientOptions{}
 	if testing.Verbose() {
-		opts.Logger = testLogger(os.Stdout, "[CLIENT] ")
+		opts.Logger = jrpc2.StdLogger(testLogger(os.Stdout, "[CLIENT] "))
 	}
 	client := jrpc2.NewClient(clientCh, opts)
 
